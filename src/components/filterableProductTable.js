@@ -4,15 +4,21 @@ var React = require('react');
 var SearchBar = require('./searchBar');
 var ProductTable = require('./productTable');
 
-var ProductRepo = require('../api/productRepo');
-var products = ProductRepo.getProducts();
+var ProductStore = require('../stores/productStore');
 
 var FilterableProductTable = React.createClass({
+	getInitialState: function() {
+		return {
+			input: ProductStore.getInput(),
+			products: ProductStore.getProducts()
+		};
+	},
+
 	render: function() {
 		return (
 			<div>
-				<SearchBar />
-				<ProductTable products={products} />
+				<SearchBar input={this.state.input} />
+				<ProductTable products={this.state.products} />
 			</div>
 		);
 	}
