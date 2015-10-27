@@ -8,12 +8,8 @@ var assign = require('object-assign');
 var Dispatcher = require('../dispatcher/appDispatcher');
 var ActionTypes = require('../constants/actionTypes');
 
-var _input = {
-	name: "",
-	inStock: false
-};
-
-var _products = [];
+var _input = null;
+var _products = null;
 
 var ProductStore = assign(StoreBase, EventEmitter.prototype, {
 	getInput: function() {
@@ -27,7 +23,7 @@ var ProductStore = assign(StoreBase, EventEmitter.prototype, {
 
 Dispatcher.register(function(action) {
 	switch(action.actionType) {
-		case ActionTypes.INITIALIZE:
+		case ActionTypes.PRODUCT_INIT:
 		_input = action.input;
 		_products = action.products;
 		break;
