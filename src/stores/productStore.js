@@ -23,12 +23,22 @@ var ProductStore = assign(StoreBase, EventEmitter.prototype, {
 
 Dispatcher.register(function(action) {
 	switch(action.actionType) {
-		case ActionTypes.PRODUCT_INIT:
-		_input = action.input;
-		_products = action.products;
-		break;
-	}
-});
+		
+		case ActionTypes.PRODUCTS_INIT:
+			_input = action.input;
+			_products = action.products;
+			break;
 
+		case ActionTypes.PRODUCTS_FILTERED:
+			_input = action.input;
+			_products = action.products;
+			break;
+
+		default:
+			return;
+	}
+
+	ProductStore.emitChange();
+});
 
 module.exports = ProductStore;

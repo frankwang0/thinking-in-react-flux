@@ -1,7 +1,6 @@
 "use strict";
 
 var React = require('react');
-var ProductRepo = require('../api/productRepo');
 var ProductCategoryRow = require('./productCategoryRow');
 var ProductRow = require('./productRow');
 

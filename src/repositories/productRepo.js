@@ -12,6 +12,18 @@ var Products = [
 var ProductRepo = {
 	getAll: function() {
 		return Products;
+	},
+
+	filter: function(filterText, inStock) {
+		return Products.filter(function(p) {
+			var textFiltered = true;
+
+			if (filterText.length > 0) {
+				textFiltered = p.name.indexOf(filterText) > -1; 
+			}
+			
+			return textFiltered && (p.stocked === inStock);				
+		});
 	}
 };
 
