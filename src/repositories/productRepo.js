@@ -14,7 +14,7 @@ var ProductRepo = {
 		return Products;
 	},
 
-	filter: function(filterText, inStock) {
+	filter: function(filterText, showInStockOnly) {
 		return Products.filter(function(p) {
 			var textFiltered = true;
 
@@ -22,7 +22,7 @@ var ProductRepo = {
 				textFiltered = p.name.indexOf(filterText) > -1; 
 			}
 			
-			return textFiltered && (p.stocked === inStock);				
+			return textFiltered && ((!showInStockOnly) || (showInStockOnly && p.stocked));				
 		});
 	}
 };

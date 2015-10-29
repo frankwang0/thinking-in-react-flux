@@ -10,17 +10,17 @@ var ProductActions = {
 			actionType: ActionTypes.PRODUCTS_INIT,
 			input: {
 				filterText: "",
-				inStock: false
+				showInStockOnly: false
 			},
 			products: ProductRepo.getAll()
 		});
 	},
 
-	filter: function(filterText, inStock) {
-		var products = ProductRepo.filter(filterText, inStock);
+	filter: function(filterText, showInStockOnly) {
+		var products = ProductRepo.filter(filterText, showInStockOnly);
 		Dispatcher.dispatch({
 			actionType: ActionTypes.PRODUCTS_FILTERED,
-			input: {filterText: filterText, inStock: inStock},
+			input: {filterText: filterText, showInStockOnly: showInStockOnly},
 			products: products
 		});
 	}

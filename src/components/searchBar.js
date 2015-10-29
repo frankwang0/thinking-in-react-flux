@@ -8,12 +8,10 @@ var SearchBar = React.createClass({
 		onInputChange: React.PropTypes.func.isRequired
 	},
 
-	handleInput: function() {
-		console.log(this.refs.filterText.value);
-		console.log(this.refs.inStock.checked);
+	handleInput: function(e) {
 		this.props.onInputChange(
-			this.refs.filterText.value, 
-			this.refs.inStock.checked
+			this.refs.filterText.getDOMNode().value, 
+			this.refs.showInStockOnly.getDOMNode().checked
 		);
 	},
 
@@ -30,8 +28,8 @@ var SearchBar = React.createClass({
 				<p>
 					<input 
 						type="checkbox" 
-						checked={this.props.input.inStock} 
-						ref="inStock" 
+						checked={this.props.input.showInStockOnly} 
+						ref="showInStockOnly" 
 						onChange={this.handleInput} 
 					/>
 					{' '}

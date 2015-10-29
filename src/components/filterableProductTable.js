@@ -30,8 +30,8 @@ var FilterableProductTable = React.createClass({
 		};
 	},
 
-	handleInput: function(filterText, inStock) {
-		ProductActions.filter(filterText, inStock);
+	handleInput: function(filterText, showInStockOnly) {
+		ProductActions.filter(filterText, showInStockOnly);
 	},
 
 	render: function() {
