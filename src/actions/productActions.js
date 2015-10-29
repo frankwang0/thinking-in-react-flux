@@ -8,10 +8,7 @@ var ProductActions = {
 	init: function() {
 		Dispatcher.dispatch({
 			actionType: ActionTypes.PRODUCTS_INIT,
-			input: {
-				filterText: "",
-				showInStockOnly: false
-			},
+			input: {filterText: "", showInStockOnly: false},
 			products: ProductRepo.getAll()
 		});
 	},

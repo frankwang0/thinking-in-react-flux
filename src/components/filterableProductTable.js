@@ -8,22 +8,22 @@ var ProductActions = require('../actions/productactions');
 
 var FilterableProductTable = React.createClass({
 	getInitialState: function() {
-		return this._getState();
+		return this.getState();
 	},
 
 	componentWillMount: function() {
-		ProductStore.addChangeListener(this._onChange);
+		ProductStore.addChangeListener(this.onChange);
 	},
 
 	componentWillUnmount: function() {
-		ProductStore.removeChangeListener(this._onChange);
+		ProductStore.removeChangeListener(this.onChange);
 	},
 
-	_onChange: function() {
-		this.setState(this._getState());
+	onChange: function() {
+		this.setState(this.getState());
 	},
 
-	_getState: function() {
+	getState: function() {
 		return {
 			input: ProductStore.getInput(),
 			products: ProductStore.getProducts()
