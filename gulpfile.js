@@ -1,11 +1,14 @@
 "use strict"
 
 var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps');
+
 var connect = require('gulp-connect');
 var open = require('gulp-open');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var concat = require('gulp-concat');
 var lint = require('gulp-eslint');
 
@@ -45,11 +48,14 @@ gulp.task('html', function() {
 });
 
 gulp.task('js', function() {
-	browserify(config.paths.mainJs)
+	browserify(config.paths.mainJs, { debug: true })
 	.transform(reactify)
 	.bundle()
 	.on('error', console.error.bind(console))
 	.pipe(source('bundle.js'))
+	.pipe(buffer())
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(config.paths.dist + '/scripts'))
 	.pipe(connect.reload());
 });
